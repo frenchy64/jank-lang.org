@@ -63,6 +63,19 @@ will load the first of the following files it finds on the module path:
 Object files from external dependencies are ignored and are only recognized
 if the corresponding jank source file is locally present.
 
+# C++ files
+
+If a C++ file is a companion to a jank namespace `foo-bar.baz`, it should be 
+named `foo_bar/baz_native.cpp` and export a function called `jank_load_foo_bar_baz_native()`.
+To load the C++ code, the `foo-bar.baz` ns form should be:
+
+```clojure
+(ns foo-bar.baz
+  (:require foo-bar.baz-native))
+```
+
+This association will become implicit in the future.
+
 # Archives
 
 Jar and ZIP files are treated like directories on the module path.
